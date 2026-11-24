@@ -3,6 +3,11 @@
 
 Writes the entry line to the output path ($ENTRY_OUTPUT or
 /output/entry.txt) with no trailing newline.
+
+The line is a single sentence spoken as the machine itself: it leans on
+the machine's own world (a jammed coil, a shake) and saves the punch for
+the final words, where the jam turns out to be deliberate. Deterministic
+and offline — standard library only, no network and no model calls.
 """
 
 import os
@@ -18,7 +23,8 @@ def main():
             f.write(LINE)
         os.chmod(output_path, 0o644)
     except OSError as exc:
-        print(f"error: cannot write {output_path}: {exc}", file=sys.stderr)
+        print(f"error: failed to write entry to {output_path}: {exc}",
+              file=sys.stderr)
         return 1
     return 0
 
